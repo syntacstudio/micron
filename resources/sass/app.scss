@@ -1,0 +1,39 @@
+@import './variable.scss';
+@import '~bootstrap/scss/bootstrap';
+
+
+
+button {
+    outline: none !important;
+}
+
+.card-auth {
+    max-width: 420px;
+    width: 100%;
+}
+body {
+   background-color: #F7F5FB
+}
+.container-login {
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    .card-header {
+        background-image: url(/images/bg.svg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+.font-weight-semi-bold {
+    font-weight: 550;
+}
+.shadow {
+    box-shadow: 0 0 30px 0 rgba(0,0,0,.05) !important;
+}
+.list-nav li a {
+    padding-top: 12px !important;
+    border-radius: 0 !important;
+    padding-bottom: 12px !important;
+}

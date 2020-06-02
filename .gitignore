@@ -1,0 +1,8 @@
+node_modules
+yarn-error.log
+yarn.lock
+package.losk.json
+histories/*
+!histories/.keep
+mix-manifest.json
+repository.js

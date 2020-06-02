@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="280px" height="385px" viewBox="0 0 280 385" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>Group 6</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="280" height="385"></rect>
+    </defs>
+    <g id="UI" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Contact-Us" transform="translate(-830.000000, -230.000000)">
+            <g id="Group-4" transform="translate(330.000000, 230.000000)">
+                <g id="Group-6" transform="translate(500.000000, 0.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Rectangle-Copy-2" fill="#4768FD" xlink:href="#path-1"></use>
+                    <circle id="Oval-Copy-277" stroke="#05346A" mask="url(#mask-2)" cx="235.5" cy="-31.5" r="160.5"></circle>
+                    <circle id="Oval-Copy-278" stroke="#05346A" mask="url(#mask-2)" cx="50.5" cy="430.5" r="160.5"></circle>
+                    <circle id="Oval-Copy-275" fill="#03DAC4" mask="url(#mask-2)" cx="-20.5" cy="420.5" r="160.5"></circle>
+                    <circle id="Oval-Copy-276" fill="#03DAC4" mask="url(#mask-2)" cx="300.5" cy="-31.5" r="160.5"></circle>
+                    <g id="Group-5" opacity="0" mask="url(#mask-2)">
+                        <g transform="translate(25.000000, 95.000000)">
+                            <text id="Reach-Us" font-family="PlayfairDisplay-Bold, Playfair Display" font-size="24" font-weight="bold" line-spacing="24">
+                                <tspan x="64.5" y="26" fill="#FFFFFF">Reach Us</tspan>
+                            </text>
+                            <text id="hello@sqira.co" font-family="CircularStd-Book, Circular Std" font-size="14" font-weight="300" line-spacing="14">
+                                <tspan x="69.5" y="68" fill="#FFFFFF">hello@sqira.co</tspan>
+                            </text>
+                            <text id="+62-1243-433-534" font-family="CircularStd-Book, Circular Std" font-size="14" font-weight="300" line-spacing="14">
+                                <tspan x="60.5" y="102" fill="#FFFFFF">+62 1243 433 534</tspan>
+                            </text>
+                            <text id="Cibunarjaya,-Kec.-Ci" font-family="CircularStd-Book, Circular Std" font-size="14" font-weight="300" line-spacing="20">
+                                <tspan x="29.215" y="133" fill="#FFFFFF">Cibunarjaya, Kec. Ciambar, </tspan>
+                                <tspan x="17.252" y="153" fill="#FFFFFF">Sukabumi Regency, Jawa Barat</tspan>
+                            </text>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

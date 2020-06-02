@@ -1,0 +1,24 @@
+[
+    {
+        "id": "123456789",
+        "repo": "syntacstudio/tiny-deployer",
+        "branch": [
+            "master",
+            "develop"
+        ],
+        "syncronus": true,
+        "process-timeout": 3000,
+        "process": [
+            {
+                "cmd": "ls -a",
+                "cwd": "/var/www/tiny-deployer"
+            }, {
+                "cmd": "echo {repo} {branch}",
+                "cwd": "/var/www/tiny-deployer"
+            }, {
+                "cmd": "npm install",
+                "cwd": "/var/www/tiny-deployer"
+            }
+        ]
+    }
+]

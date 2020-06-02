@@ -1,0 +1,54 @@
+{
+  "name": "smart-deployer",
+  "version": "1.0.0",
+  "description": "Deployer with nodejs integration ",
+  "main": "bin/main.js",
+  "repository": "https://github.com/tofikhidayat/smart-deployer.git",
+  "author": "Tofik Hidayat <tofik@syntac.co.id>",
+  "license": "MIT",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production bin/main.js",
+    "watch": "npm run dev -- --watch",
+    "dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "engines": {
+    "node": ">=12.4.0",
+    "npm": ">=6.0.0"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "chalk": "^4.0.0",
+    "compression": "^1.7.4",
+    "cookie-encrypter": "^1.0.1",
+    "cookie-parser": "^1.4.5",
+    "cross-env": "^7.0.2",
+    "csurf": "^1.11.0",
+    "express": "^4.17.1",
+    "express-edge": "^2.0.2",
+    "express-throttle": "^2.0.0",
+    "github-webhook-middleware": "^0.0.2",
+    "gritty": "^4.8.12",
+    "log-to-file": "^2.0.2",
+    "mkdirp": "^1.0.4",
+    "moment": "^2.26.0",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "react-tooltip": "^4.2.6",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.10.1",
+    "bootstrap": "^4.5.0",
+    "laravel-mix": "^5.0.4",
+    "purify-css": "^1.2.5",
+    "purifycss-webpack": "^0.7.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "sass": "^1.26.7",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
