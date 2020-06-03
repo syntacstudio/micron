@@ -6,7 +6,7 @@ $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 $theme-colors: (
-  "primary": #035aa6,
+  "primary": #ff9234,
 //   "dark":#3D3D3D,
 //   "secondary":#C8C8C8,
   "dark-blue":#05346A,
@@ -19,3 +19,16 @@ $theme-colors: (
   "danger":#FF2B2B,
   "grey-base":$body-bg
 );
+
+$icomoon-font-family: "icomoon" !default;
+$icomoon-font-path: "/fonts" !default;
+
+$ic-app: "\e908";
+$ic-chevron-left: "\e900";
+$ic-chevron-right: "\e901";
+$ic-cron: "\e902";
+$ic-dashboard: "\e903";
+$ic-logout: "\e904";
+$ic-setting: "\e905";
+$ic-terminal: "\e906";
+$ic-user: "\e907";

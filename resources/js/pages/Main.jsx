@@ -5,53 +5,28 @@ import moment from 'moment'
 import axios from 'axios'
 
 function Main(props) {
-    const [dir, setDir] = useState([])
-    useEffect(() => {
-        axios.get('/api/histories/', {
-            'Content-Type': 'application/json',
-            'Accept': 'applicatio/json'
-        })
-        .then(({data}) => {
-            setDir(data.data)
-        })
-        .catch(({response}) => {
-            if(response.status == 401) {
-                return window.location.href = '/login'
-            }
-        })
-    }, [])
-
-    console.log(props)
+   
     return(
         <Layout>
-            <div className="row border-bottom pb-2 mx-0">
-                <div className="col-8">
-                    <span>Name</span>
-                </div>
-                <div className="col-4">
-                    <span>Created At</span>
-                </div>
-            </div>
-            <div className="w-100">
-                {
-                    dir ?
-                    dir.map((itm, key) => {
-                        return(
-                            <Link className="text-dark d-block bg-white shadow py-2 mt-2 rounded" key={key} to={`/console/${itm.name}`}>
-                                <div className="row mx-0">
-                                    <div className="col-8">
-                                        <strong>{ itm.name }</strong>
-                                    </div>
-                                    <div className="col-4">
-                                        <span> { moment(itm.createdAt).format("YYYY-MMMM-DD HH:MM:SS ") }</span>
-                                    </div>
-                                </div>
-                            </Link>
-                        )
-                    })  :
-                    <div className="alert alert-warning">No log found</div>
-                }
-            </div>
+           <div className="dash-header">
+               <div className="w-100">
+                  <div className="container-fluid pt-4">
+                    <h1 className="text-white ">Micron Deployer</h1>
+                  </div>
+               </div>
+               <div className="header-list">
+                    <div className="card-header-main card">
+                        <div className="container-fluid">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit odit ipsum, earum incidunt ea quos, eos nam commodi, vero possimus est esse aut temporibus? Accusantium quos eius sint praesentium voluptatibus?
+                        </div>
+                    </div>
+                    <div className="card-header-main card">
+                        <div className="container-fluid">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit odit ipsum, earum incidunt ea quos, eos nam commodi, vero possimus est esse aut temporibus? Accusantium quos eius sint praesentium voluptatibus?
+                        </div>
+                    </div>
+               </div>
+           </div>
         </Layout>
     )
 }
