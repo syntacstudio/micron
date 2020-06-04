@@ -1,6 +1,13 @@
 @import './bootstrap.scss';
 @import './fonts.scss';
 
+.rounded {
+    border-radius: 4px;
+}
+
+html, body {
+    overflow: hidden ;
+}
 
 button {
     outline: none !important;
@@ -92,13 +99,16 @@ body {
 .main-layout {
     width: calc(100% - 80px);
     float:left;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding-bottom: 50px;
 }
 
 // dashboard main
 .dash-header {
     background-color: var(--primary);
     .card-header-main {
-        height: 200px;
+        height: 215px;
         width: 450px;
         display: block;
         border: none;
@@ -113,10 +123,92 @@ body {
         }
     }
     .header-list {
-        height: 200px;
+        height: 100px;
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
+    .list-type {
+        .list-group-item {
+            clear: both;
+            overflow: hidden;
+            padding: 7px 0px !important;
+            .list-type {
+                width: 130px;
+                float: left;
+                span {
+                    font-weight: 500;
+                }
+            }
+            .list-desc {
+                float: left;
+                width: calc(100% - 130px);
+            }
+        }
+    }
+}
+.dash-main {
+    margin-top: 120px;
+}
+
+
+// mini dash header
+.dash-header-mini {
+    background-color: var(--primary);
+    height: 90px;
+    width: 100%;
+}
+.dash-layout-tree {
+    min-width: 1000px;
+    .dir-tree , .dir-tree-detail {
+        clear: both;
+        overflow: hidden;
+        background-color: #fff;
+        padding: 10px 0px;
+        >div {
+            padding: 0px 15px;
+            display: block;
+            min-height: 20px;
+            span {
+                font-weight: 500;
+            }
+            &:not(:last-child) {
+                border-right: 1px inset rgba(0,0,0,.1);
+            }
+        }
+    }
+    .dir-tree-detail {
+        clear: both;
+        margin-bottom: 10px !important;
+        >div {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        span {
+            font-weight: 400 !important;
+        }
+    }
+    .dir-id {
+        width: 8%;
+    }
+    .dir-name {
+        width: 15%;
+    }
+    .dir-branch {
+        width: 10%;
+    }
+    .process-type {
+        width: 12%;
+    }
+    .process-list {
+        width: 12%;
+    }
+    .dir-created {
+        width: 12%;
+    }
+    .dir-action {
+        width: 12%;
+    }
+    
 }

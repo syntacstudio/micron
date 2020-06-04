@@ -26,15 +26,34 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-.ic-chevron-right {
+.ic-create {
   &:before {
-    content: $ic-chevron-right; 
+    content: $ic-create; 
   }
 }
-.ic-user {
+.ic-plus {
   &:before {
-    content: $ic-user; 
+    content: $ic-plus; 
+  }
+}
+.ic-copy {
+  &:before {
+    content: $ic-copy; 
+  }
+}
+.ic-trash {
+  &:before {
+    content: $ic-trash; 
+  }
+}
+.ic-update {
+  &:before {
+    content: $ic-update; 
+  }
+}
+.ic-app {
+  &:before {
+    content: $ic-app; 
   }
 }
 .ic-chevron-left {
@@ -42,9 +61,9 @@
     content: $ic-chevron-left; 
   }
 }
-.ic-app {
+.ic-chevron-right {
   &:before {
-    content: $ic-app; 
+    content: $ic-chevron-right; 
   }
 }
 .ic-cron {
@@ -72,4 +91,8 @@
     content: $ic-terminal; 
   }
 }
-
+.ic-user {
+  &:before {
+    content: $ic-user; 
+  }
+}

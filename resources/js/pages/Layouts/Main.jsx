@@ -26,7 +26,7 @@ function MainPage({children, crumb=[]}) {
                             <NavLink to='/console/deploy'  data-tip data-for="deploy" className="ic ic-app">
                             </NavLink>
                             <Tooltip id="deploy" type="dark" backgroundColor="var(--primary)" effect="solid" place="right">
-                                <span>Deploy App</span>
+                                <span>Auto Deploy App</span>
                             </Tooltip>
                         </li>
                         <li>
@@ -48,6 +48,13 @@ function MainPage({children, crumb=[]}) {
                             </NavLink>
                             <Tooltip id="setting" type="dark" backgroundColor="var(--primary)" effect="solid" place="right">
                                 <span>Setting</span>
+                            </Tooltip>
+                        </li>
+                        <li>
+                            <NavLink to='/console/setting'  data-tip data-for="update" className="ic ic-update">
+                            </NavLink>
+                            <Tooltip id="update" type="dark" backgroundColor="var(--primary)" effect="solid" place="right">
+                                <span>Update</span>
                             </Tooltip>
                         </li>
                         <li className="logout">
