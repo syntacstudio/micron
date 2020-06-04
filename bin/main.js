@@ -16,7 +16,7 @@ const csrf = require('csurf')
 const compression = require('compression')
 const edge = require('express-edge')
 const cookieEncrypter = require('cookie-encrypter')
-const session = require('express-session')
+const helmet = require('helmet')
 edge.config({ cache: process.env.NODE_ENV === 'production' })
 
 const app  = express()
@@ -25,10 +25,6 @@ app.use(edge.engine);
 app.set('trust proxy',  process.env.NODE_ENV === 'production')
 app.set('views', path.join(__dirname, '../resources/views'));
 app.use(logger('dev'))
-app.use(session({
-    secret: config.appKey,
-    name: 'sessionId'
-  }))
 app.use(helmet())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
