@@ -3,7 +3,6 @@
 /**
  * Smart deployer with express
  */
-
 const http = require('http')
 const path = require('path')
 const express = require('express')
@@ -17,14 +16,20 @@ const csrf = require('csurf')
 const compression = require('compression')
 const edge = require('express-edge')
 const cookieEncrypter = require('cookie-encrypter')
+const session = require('express-session')
 edge.config({ cache: process.env.NODE_ENV === 'production' })
-
 
 const app  = express()
 const csrfProtection = csrf({ cookie: true })
 app.use(edge.engine);
+app.set('trust proxy',  process.env.NODE_ENV === 'production')
 app.set('views', path.join(__dirname, '../resources/views'));
 app.use(logger('dev'))
+app.use(session({
+    secret: config.appKey,
+    name: 'sessionId'
+  }))
+app.use(helmet())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cookieParser(config.appKey))
@@ -32,9 +37,10 @@ app.use(cookieEncrypter(config.appKey))
 app.use(express.static(path.join(__dirname, '../public/')))
 app.use(csrfProtection)
 app.use(compression())
+app.disable('x-powered-by')
+
 app.use((req, res, next) => {
     res.setHeader('X-Robots-Tag', 'noindex, nofollow')
-    res.removeHeader('X-Powered-By')
     next()
 })
 
