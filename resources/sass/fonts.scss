@@ -96,3 +96,14 @@
     content: $ic-user; 
   }
 }
+
+.ic-ram {
+  &:before {
+    content: $ic-ram; 
+  }
+}
+.ic-disk {
+  &:before {
+    content: $ic-disk; 
+  }
+}

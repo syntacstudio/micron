@@ -1,10 +1,79 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useReducer} from 'react'
 import Layout from './Layouts/Main'
 import {Link} from 'react-router-dom'
 import moment from 'moment'
 import axios from 'axios'
+import { Line as Area } from 'react-chartjs-2';
 
-function Main(props) {
+const chatDefaultOption = {
+    maintainAspectRatio: false,
+	spanGaps: false,
+	elements: {
+	    line: {
+		    tension: 0.000001
+		}
+	},
+	plugins: {
+	    filler: {
+		    propagate: false
+		}
+	},
+	scales: {
+	    xAxes: [{
+		    ticks: {
+			    autoSkip: true,
+				maxRotation: 0
+            },
+            gridLines: {
+                // display: false,
+            },
+        }],
+        yAxes: [{
+		    ticks: {
+			    autoSkip: true,
+				maxRotation: 0
+            },
+            gridLines: {
+                // display: false,
+            },
+		}]
+    },
+    legend: {
+        display: false
+    }
+}
+
+
+function MainPage(props) {
+
+    const [cpuData, setCpuData] = useReducer((oldState, newState) => ({ ...oldState, ...newState}), {
+        labels: ['12:00', '12:01', '12:02', '12:03', '12:05', '12:06', '12:07', '12:08', '12:09', '12:10', '12:11', '12:23'],
+        datasets: [{
+            label: "Cpu Ussage",
+            backgroundColor: 'rgba(255, 146, 52, .4)',
+            borderColor: '#ff9234',
+            smooth: true,
+            lineTension: 0.2,  
+            data: [100, 60, 75, 20, 20, 55, 40, 45, 56, 100, 10, 0],
+        }]
+    })
+    useEffect(() => {
+        const randCreate = () => Math.floor(Math.random() * 101)
+        setInterval(() => {
+            setCpuData({
+                labels: ['12:00', '12:01', '12:02', '12:03', '12:05', '12:06', '12:07', '12:08', '12:09', '12:10', '12:11', '12:23'],
+                datasets: [{
+                    label: "Cpu Ussage",
+                    backgroundColor: 'rgba(255, 146, 52, .4)',
+                    borderColor: '#ff9234',
+                    smooth: true,
+                    lineTension: 0.2,  
+                    data: [randCreate(), randCreate(), randCreate(), randCreate(),randCreate(),randCreate(),randCreate(),randCreate(),randCreate(),randCreate(),randCreate(),randCreate(),randCreate()]
+                }]
+            })
+        }, 2000)
+    }, [])
+
    
     return(
         <Layout>
@@ -15,157 +84,73 @@ function Main(props) {
                     <p className="text-white">Version 1.0</p>
                   </div>
                </div>
-               <div className="header-list">
-                    <div className="card-header-main card">
-                        <div className="p-3">
-                            <ul class="list-type list-unstyled">
-                                <li class="list-group-item py-2">
-                                    <div className="list-type">
-                                        <span>Operating system</span>
-                                    </div>
-                                    <div className="list-desc">
-                                        <span>Ubuntu 18 64 bit</span>
-                                    </div>
-                                </li>
-                                <li class="list-group-item py-2">
-                                    <div className="list-type">
-                                        <span>Manufactur</span>
-                                    </div>
-                                    <div className="list-desc">
-                                        <span>MSI  ##model</span>
-                                    </div>
-                                </li>
-                                <li class="list-group-item py-2">
-                                    <div className="list-type">
-                                        <span>CPU</span>
-                                    </div>
-                                    <div className="list-desc">
-                                        <span>Intel(R) core i5</span>
-                                    </div>
-                                </li>
-                                <li class="list-group-item py-2">
-                                    <div className="list-type">
-                                        <span>Uptime</span>
-                                    </div>
-                                    <div className="list-desc">
-                                        <span>121212</span>
-                                    </div>
-                                </li>
-                                <li class="list-group-item py-2">
-                                    <div className="list-type">
-                                        <span>Ram</span>
-                                    </div>
-                                    <div className="list-desc">
-                                        <span>gskilll 12gb</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="card-header-main card">
-                        <div className="p-3">
-                            <div className="w-100">
-                                <span className="text-dark">Cpu Load</span>
-                                <div className="progress">
-                                    <div className="progress-bar" role="progressbar" style={{ width: '10%' }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                        12%
-                                    </div>
-                                </div>
+               <div className="header-list mx-0 row">
+                   <div className="col-md-8 col-12 pr-3 pr-md-0">
+                        <div className="card-header-main card w-100 ">
+                            <div className="card-header border-bottom-0 bg-white">
+                                <h5 className="mb-0 text-dark">CPU Ussage</h5>
                             </div>
-                            <div className="w-100 mt-2">
-                                <span className="text-dark">Free Temperature</span>
-                                <div className="progress">
-                                    <div className="progress-bar" role="progressbar" style={{ width: '30%' }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                        120C / 100
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="w-100 mt-2">
-                                <span className="text-dark">Ram Load</span>
-                                <div className="progress">
-                                    <div className="progress-bar" role="progressbar" style={{ width: '70%' }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                    12bg / 12gb
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="w-100 mt-2">
-                                <span className="text-dark">Free Storage</span>
-                                <div className="progress">
-                                    <div className="progress-bar" role="progressbar" style={{ width: '20%' }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                        12bg / 12gb
-                                    </div>
-                                </div>
+                            <div className="card-body p-2 pt-0">
+                                <Area
+                                height={250}
+                                data={cpuData}
+                                options={chatDefaultOption}
+                                />
                             </div>
                         </div>
-                    </div>
+                   </div>
+                   <div className="col-md-4">
+                       <div className="w-100">
+                           <div className="card card-header-main mini">
+                                <div className="card-header border-bottom-0 bg-white ">
+                                    <h5 className="mb-0 text-dark">RAM Ussage</h5>
+                                </div>
+                                <div className="card-body">
+                                    <div className="usage">
+                                        <h2 className="text-primary">
+                                            12%
+                                        </h2>
+                                    </div>
+                                    <div className="flying-icon">
+                                        <span className="ic-ram" style={{ fontSize: '35px' }}></span>
+                                    </div>
+                                </div>
+                                <div className="card-footer bg-white border-0">
+                                    <div className="progress">
+                                        <div className="progress-bar"style={{ width: '40%' }}>12gb / 200gb</div>
+                                    </div>
+                                </div>
+                           </div>
+                       </div>
+                       <div className="w-100 mt-3">
+                           <div className="card card-header-main mini">
+                                <div className="card-header border-bottom-0 bg-white">
+                                    <h5 className="mb-0 text-dark">Disk Ussage</h5>
+                                </div>
+                                <div className="card-body">
+                                   <div className="usage">
+                                        <h2 className="text-primary">
+                                            100%
+                                        </h2>
+                                   </div>
+                                    <div className="flying-icon">
+                                        <span className="ic-disk" style={{ fontSize: '25px' }}></span>
+                                    </div>
+                                </div>
+                                <div className="card-footer bg-white border-0">
+                                    <div className="progress">
+                                        <div className="progress-bar"style={{ width: '100%' }}>12gb / 200gb</div>
+                                    </div>
+                                </div>
+                           </div>
+                       </div>
+                   </div>
                </div>
            </div>
            <div className="dash-main container-fluid">
-               {/* <div className="row">
-                   <div className="col-md-4 mt-4">
-                       <div className="card shadow">
-                           <div className="card-header bg-primary">
-                               <h5 className="mb-0 text-white">CPU Info</h5>
-                           </div>
-                           <div className="card-body">
-                               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ducimus, corrupti id mollitia quas ipsa voluptatibus ipsam, repudiandae saepe minima maxime. Sint, dolore placeat. Consequuntur vel praesentium possimus rem ipsam.
-                           </div>
-                       </div>
-                   </div>
-                   <div className="col-md-4 mt-4">
-                       <div className="card shadow">
-                           <div className="card-header bg-primary">
-                               <h5 className="mb-0 text-white">Bios Info</h5>
-                           </div>
-                           <div className="card-body">
-                               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ducimus, corrupti id mollitia quas ipsa voluptatibus ipsam, repudiandae saepe minima maxime. Sint, dolore placeat. Consequuntur vel praesentium possimus rem ipsam.
-                           </div>
-                       </div>
-                   </div>
-                   <div className="col-md-4 mt-4">
-                       <div className="card shadow">
-                           <div className="card-header bg-primary">
-                               <h5 className="mb-0 text-white">RAM Info</h5>
-                           </div>
-                           <div className="card-body">
-                               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ducimus, corrupti id mollitia quas ipsa voluptatibus ipsam, repudiandae saepe minima maxime. Sint, dolore placeat. Consequuntur vel praesentium possimus rem ipsam.
-                           </div>
-                       </div>
-                   </div>
-                   <div className="col-md-4 mt-4">
-                       <div className="card shadow">
-                           <div className="card-header bg-primary">
-                               <h5 className="mb-0 text-white">Storage Info</h5>
-                           </div>
-                           <div className="card-body">
-                               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ducimus, corrupti id mollitia quas ipsa voluptatibus ipsam, repudiandae saepe minima maxime. Sint, dolore placeat. Consequuntur vel praesentium possimus rem ipsam.
-                           </div>
-                       </div>
-                   </div>
-                   <div className="col-md-4 mt-4">
-                       <div className="card shadow">
-                           <div className="card-header bg-primary">
-                               <h5 className="mb-0 text-white">Auto deploy App</h5>
-                           </div>
-                           <div className="card-body">
-                               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ducimus, corrupti id mollitia quas ipsa voluptatibus ipsam, repudiandae saepe minima maxime. Sint, dolore placeat. Consequuntur vel praesentium possimus rem ipsam.
-                           </div>
-                       </div>
-                   </div>
-                   <div className="col-md-4 mt-4">
-                       <div className="card shadow">
-                           <div className="card-header bg-primary">
-                               <h5 className="mb-0 text-white">Cron Process</h5>
-                           </div>
-                           <div className="card-body">
-                               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ducimus, corrupti id mollitia quas ipsa voluptatibus ipsam, repudiandae saepe minima maxime. Sint, dolore placeat. Consequuntur vel praesentium possimus rem ipsam.
-                           </div>
-                       </div>
-                   </div>
-               </div> */}
            </div>
         </Layout>
     )
 }
 
-export default Main
+export default MainPage

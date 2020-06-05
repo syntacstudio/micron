@@ -4,6 +4,28 @@ object-assign
 @license MIT
 */
 
+/*!
+ * Chart.js v2.9.3
+ * https://www.chartjs.org
+ * (c) 2019 Chart.js Contributors
+ * Released under the MIT License
+ */
+
+/*!
+ * Socket.IO v2.3.0
+ * (c) 2014-2019 Guillermo Rauch
+ * Released under the MIT License.
+ */
+
+/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <http://feross.org>
+ * @license  MIT
+ */
+
+/*! https://mths.be/utf8js v2.1.2 by @mathias */
+
 /** @license React v0.19.1
  * scheduler.production.min.js
  *

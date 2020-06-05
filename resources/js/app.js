@@ -10,12 +10,14 @@ import {
 import LoginPage from './pages/Login'
 import MainPage from './pages/Main'
 import RepoPage from './pages/Repo'
+import TerminalPage from './pages/Console'
 
 function App() {
    return(
     <Router>
         <Switch>
         <Route path="/console/login" component={LoginPage}/>
+        <Route path="/console/terminal" component={TerminalPage}/> 
         <Route path="/console/:repo" component={RepoPage}/>
         <Route path="/console" component={MainPage}/> 
     </Switch>

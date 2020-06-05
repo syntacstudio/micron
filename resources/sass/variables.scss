@@ -7,7 +7,7 @@ $line-height-base: 1.6;
 
 $theme-colors: (
   "primary": #ff9234,
-//   "dark":#3D3D3D,
+  "dark":#323232,
 //   "secondary":#C8C8C8,
   "dark-blue":#05346A,
   "light-blue":#6481A4,
@@ -23,6 +23,8 @@ $theme-colors: (
 $icomoon-font-family: "icomoon" !default;
 $icomoon-font-path: "/fonts" !default;
 
+$ic-ram: "\e90e";
+$ic-disk: "\e90f";
 $ic-plus: "\e909";
 $ic-create: "\e90c";
 $ic-copy: "\e90a";

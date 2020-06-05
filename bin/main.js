@@ -17,6 +17,8 @@ const compression = require('compression')
 const edge = require('express-edge')
 const cookieEncrypter = require('cookie-encrypter')
 const helmet = require('helmet')
+const gritty = require('gritty')
+const io = require('socket.io')
 edge.config({ cache: process.env.NODE_ENV === 'production' })
 
 const app  = express()
@@ -44,6 +46,11 @@ app.use((req, res, next) => {
 router(app)
 // end router
 const server = http.createServer(app)
+const socket = io.listen(server)
+gritty.listen(socket, {
+    command: 'mc',     
+    autoRestart: true, 
+})
 server.listen(config.port, config.host, () => {
     console.log(`[Deployer] listen on http://${chalk.blue(config.host)}:${chalk.blue(config.port)}`)
 })

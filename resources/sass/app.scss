@@ -102,32 +102,62 @@ body {
     max-height: 100vh;
     overflow-y: auto;
     padding-bottom: 50px;
+    height: 100%;
 }
 
 // dashboard main
 .dash-header {
     background-color: var(--primary);
     .card-header-main {
-        height: 215px;
-        width: 450px;
         display: block;
         border: none;
-        margin-top: 120px;
+        margin-top: 10px;
         border-radius: 4px !important;
         box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.04);
-        &:last-child {
-            margin-left: 30px;
+        .card-header {
+            h5 {
+                font-size: 16px !important;
+            }
         }
-        &:first-child {
-            margin-right: 30px;
+        .card-body {
+            height: 320px;
+        }
+        &.mini {
+            height: 174px !important;
+            .card-body {
+                height: 83px;
+                display: flex;
+                .usage {
+                    width: calc(100% - 70px);
+                }
+                h2 {
+                    font-size: 46px !important;
+                    margin-bottom: 0 !important;
+                }
+                .flying-icon {
+                    width: 70px;
+                    span {
+                        height: 50px;
+                        margin-left: auto;
+                        width: 50px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: var(--primary);
+                        padding: 8px;
+                        border-radius: 100%;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+        .flying-icon {
+
         }
     }
     .header-list {
         height: 100px;
         width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
     .list-type {
         .list-group-item {
@@ -211,4 +241,10 @@ body {
         width: 12%;
     }
     
+}
+#main-console {
+    height: calc(100% - 90px);
+    .xterm-screen {
+        height: calc(100% - 90px) !important;
+    }
 }

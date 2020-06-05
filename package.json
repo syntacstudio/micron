@@ -40,21 +40,27 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
-    "axios": "^0.19.2",
     "@babel/preset-react": "^7.10.1",
+    "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
+    "chart.js": "^2.9.3",
+    "currify": "^4.0.0",
     "laravel-mix": "^5.0.4",
     "purify-css": "^1.2.5",
     "purifycss-webpack": "^0.7.0",
     "react": "^16.13.1",
+    "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-svg-loader": "^3.0.3",
+    "react-tooltip": "^4.2.6",
     "sass": "^1.26.7",
     "sass-loader": "^8.0.2",
-    "svgo": "^1.3.2",
-    "svgo-loader": "^2.2.1",
-    "react-tooltip": "^4.2.6",
-    "vue-template-compiler": "^2.6.11"
+    "socket.io-client": "^2.3.0",
+    "vue-template-compiler": "^2.6.11",
+    "wraptile": "^3.0.0",
+    "xterm": "^4.6.0",
+    "xterm-addon-fit": "^0.4.0",
+    "xterm-addon-webgl": "^0.7.0"
   }
 }

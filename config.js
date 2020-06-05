@@ -1,6 +1,6 @@
  const config = {
     appKey: 'A4622B17FEE3B8B999634290EEA45F26',
-    serverName: '[Deployer] Default Server',
+    serverName: 'micron',
     cookieMaxAge: 60 * 60 * 24 *  360,
     path: '/deployer/webhook/git',
     host: '0.0.0.0',
