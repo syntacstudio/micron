@@ -1,0 +1,8 @@
+{
+  "auth": [
+      {
+        "credential": "micron",
+        "password": "micron"
+      }
+  ]
+}

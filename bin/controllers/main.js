@@ -1,6 +1,5 @@
 'use strict'
 
-const config = require('../../config')
 const csurf = require('csurf')
 const fs = require('fs')
 const path = require('path')
@@ -8,7 +7,7 @@ const historyPath = path.join(__dirname, '../../histories')
 
 const index = async (req, res) =>  {
     res.render('index', {
-        config,
+        config: process.env,
         title: 'Console',
         csrfToken: req.csrfToken()
     })

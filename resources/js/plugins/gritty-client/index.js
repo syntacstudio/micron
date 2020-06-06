@@ -45,6 +45,7 @@ function gritty(ref, options = {}) {
         cwd,
     } = options;
     
+
     const env = getEnv(options.env || {});
     const socket = connect(prefix, socketPath);
     
@@ -101,7 +102,7 @@ function _onConnect(socket, fitAddon, {env, cwd, cols, rows, command, autoRestar
 }
 
 function _onDisconnect(terminal) {
-    terminal.writeln('terminal disconnected...');
+    terminal.writeln('Console Disconnected...');
 }
 
 function _onData(terminal, data) {
@@ -129,6 +130,13 @@ function connect(prefix, socketPath) {
         'max reconnection attempts' : 2 ** 32,
         'reconnection limit'        : FIVE_SECONDS,
         path,
+        transportOptions: {
+            polling: {
+                extraHeaders: {
+                    'Cookie': document.cookie
+                }
+            }
+        }
     });
     
     return socket;

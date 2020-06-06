@@ -1,11 +1,12 @@
 'use strict'
 
-const config = require('../config')
+const env = require('dotenv').config()
 const throttle = require('express-throttle')
 const githubMiddleware = require('github-webhook-middleware')({
-    secret: config.githubSecret,
+    secret: process.env.GIT_SECRET_KEY,
     limit: '20mb',
   })
+const authMidleware = require('./middlewares/auth')
 
 // constrollers
 const auth = require('./controllers/auth')
@@ -13,15 +14,12 @@ const webhook = require('./controllers/webhook')
 const main = require('./controllers/main')
 
 const routers = app => {
-    app.post(config.path, githubMiddleware, webhook.github)
+    app.post(process.env.GITHUB_WEBHOOK_URL, githubMiddleware, webhook.github)
 
-
-    app.get('/console/login', auth.login)
+    app.get('/', auth.guest)
+    app.get('/console/login', auth.guest, auth.login)
     app.post('/api/login', throttle({ burst: 5, period: '1min'}), auth.postLogin)
-    
-    app.get(['/console', '/console/*'], main.index)
-
-
+    app.get(['/console', '/console/*'], authMidleware.webAuth, main.index)
     app.get('/api/histories', main.history)
     app.get('/api/histories/:path', main.getFileList)
     app.get('/api/histories/:path/:date', main.getByDate)

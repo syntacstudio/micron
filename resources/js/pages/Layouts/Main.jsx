@@ -51,7 +51,7 @@ function MainPage({children, crumb=[]}) {
                             </Tooltip>
                         </li>
                         <li>
-                            <NavLink to='/console/setting'  data-tip data-for="update" className="ic ic-update">
+                            <NavLink to='/console/update'  data-tip data-for="update" className="ic ic-update">
                             </NavLink>
                             <Tooltip id="update" type="dark" backgroundColor="var(--primary)" effect="solid" place="right">
                                 <span>Update</span>
