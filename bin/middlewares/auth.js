@@ -13,9 +13,8 @@ const cookie = require('cookie')
 const webAuth = (req, res, next) => {
     
     if(process.env.AUTH == 'false') next()
-
-    const cookieData = req.cookies._micron ? JSON.parse(req.cookies._micron) : {}
     try {
+        const cookieData = req.cookies._micron ? JSON.parse(req.cookies._micron) : {}
         const withAuth = config.auth.filter(itm => (itm.credential === cookieData.credential && itm.password === cookieData.password))[0]
         if(withAuth) {
             return next()

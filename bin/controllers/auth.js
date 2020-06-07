@@ -50,12 +50,14 @@ const postLogin = async(req, res) => {
  * @param {*} next 
  */
 const guest = (req, res, next) => {
-    const cookieData = req.cookies._micron ? JSON.parse(req.cookies._micron) : {}
-    const withAuth = config.auth.filter(itm => (itm.credential == cookieData.credential && itm.password == cookieData.password))[0]
-    if(!withAuth) {
-        return next()
-    }
-    return res.redirect('/console')
+    try {
+        const cookieData = req.cookies._micron ? JSON.parse(req.cookies._micron) : {}
+        const withAuth = config.auth.filter(itm => (itm.credential == cookieData.credential && itm.password == cookieData.password))[0]
+        if(!withAuth) {
+            return res.redirect('/console')
+        }
+    } catch(e) {}
+    return next()
 }
 
 module.exports = {
