@@ -6,3 +6,4 @@ histories/*
 !histories/.keep
 mix-manifest.json
 repository.js
+.env

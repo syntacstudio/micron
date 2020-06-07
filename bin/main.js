@@ -1,7 +1,9 @@
 #!/usr/bin/env node
+'use strict'
 
 /**
  * Smart deployer with express
+ * Author Tofik Hidayat <tofik@syntac.co.id>
  */
 const http = require('http')
 const path = require('path')
@@ -20,47 +22,54 @@ const gritty = require('gritty')
 const io = require('socket.io')
 const env = require('dotenv').config()
 edge.config({ cache: process.env.NODE_ENV === 'production' })
-// external middleware
+// internal middleware
 const authMiddleware = require('./middlewares/auth')
 
+// Express configuration
 const app  = express()
 const csrfProtection = csrf({ cookie: true, signed: true })
 app.use(edge.engine);
-app.set('trust proxy',  process.env.NODE_ENV === 'production')
+app.set('trust proxy', process.env.NODE_ENV === 'production')
 app.set('views', path.join(__dirname, '../resources/views'));
-app.use(logger('dev'))
+app.use(logger('common'))
 app.use(helmet())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cookieParser(process.env.ENV_KEY))
-app.use(cookieEncrypter(process.env.ENV_KEY))
+app.use(cookieEncrypter(process.env.ENV_KEY, {
+    signed: true,
+    maxAge: parseFloat(process.env.COOKIE_MAX_AGE)
+}))
 app.use(express.static(path.join(__dirname, '../public/')))
 app.use(csrfProtection)
 app.use(compression())
+// remove header powered by express
 app.disable('x-powered-by')
-
-
+//add robot tag, block search engine indexing
 app.use((req, res, next) => {
     res.setHeader('X-Robots-Tag', 'noindex, nofollow')
     next()
 })
-
-// router here
+// main router
 router(app)
-// end router
+
+// implement express with nodejs http
 const server = http.createServer(app)
+// implement socket.io
 const socket = io.listen(server)
+// impement socket auth based cookie
+socket.use(authMiddleware.wsAuth)
+// implement grity
 gritty.listen(socket, {
     command: 'mc',     
     autoRestart: true, 
 })
 
-socket.use(authMiddleware.wsAuth)
-
+// Listen server
 server.listen(parseInt(process.env.PORT), process.env.HOST, () => {
-    console.log(`[Deployer] listen on http://${chalk.blue(process.env.HOST)}:${chalk.blue(process.env.PORT)}`)
+    console.log(`[Micron] listen on http://${chalk.blue(process.env.HOST)}:${chalk.blue(process.env.PORT)}`)
 })
-
+// log on server error
 server.on('error', error => {
     console.error(error)
 })

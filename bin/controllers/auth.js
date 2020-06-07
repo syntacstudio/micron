@@ -4,7 +4,11 @@ const fs = require('fs')
 const path = require('path')
 const config = require('../../config')
 
-// login pages
+/**
+ * Login page
+ * @param {*} req 
+ * @param {*} res 
+ */
 const login = async (req, res) =>  {
     res.render('index', {
         config: process.env,
@@ -13,19 +17,24 @@ const login = async (req, res) =>  {
     })
 }
 
-// login function
+/**
+ * Login function
+ * @param {*} req 
+ * @param {*} res 
+ */
 const postLogin = async(req, res) => {
-    const {credential, password} = req.body
-    
-    const withAuth = config.auth.filter(itm => (itm.credential === credential && itm.password === password))[0]
-    if(withAuth) {
-        res.cookie('_micron', JSON.stringify(withAuth) , {maxAge: parseFloat(process.env.COOKIE_MAX_AGE)})
-        res.send({
-            statsus: 200,
-            message: 'ok'
-        })
-        return res.end()
-    } 
+    try {
+        const {credential, password} = req.body
+        const withAuth = config.auth.filter(itm => (itm.credential === credential && itm.password === password))[0]
+        if(withAuth) {
+            res.cookie('_micron', JSON.stringify(withAuth))
+            res.send({
+                statsus: 200,
+                message: 'ok'
+            })
+            return res.end()
+        } 
+    } catch(e) {}
     res.status(401)
     res.send({
         status: 401,
@@ -34,7 +43,12 @@ const postLogin = async(req, res) => {
     return res.end()
 }
 
-// auto login user
+/**
+ * Auto redirect user when user has login
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 const guest = (req, res, next) => {
     const cookieData = req.cookies._micron ? JSON.parse(req.cookies._micron) : {}
     const withAuth = config.auth.filter(itm => (itm.credential == cookieData.credential && itm.password == cookieData.password))[0]

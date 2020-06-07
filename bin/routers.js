@@ -14,8 +14,10 @@ const webhook = require('./controllers/webhook')
 const main = require('./controllers/main')
 
 const routers = app => {
+    // post webhook
     app.post(process.env.GITHUB_WEBHOOK_URL, githubMiddleware, webhook.github)
 
+    // app route
     app.get('/', auth.guest)
     app.get('/console/login', auth.guest, auth.login)
     app.post('/api/login', throttle({ burst: 5, period: '1min'}), auth.postLogin)
@@ -31,10 +33,6 @@ const routers = app => {
             message: `Sorry this path ${req.protocol}://${req.hostname}${req.url} are not found`
         })
         return res.end()
-    })
-    app.use((req, res) => {
-        res.status(403)
-        res.send('ups')
     })
 }
 

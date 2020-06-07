@@ -30,7 +30,7 @@ module.exports._onTermResize = _onTermResize;
 module.exports._onTermData = _onTermData;
 module.exports._onWindowResize = _onWindowResize;
 
-const defaultFontFamily = 'Menlo, Consolas, "Liberation Mono", Monaco, "Lucida Console", monospace';
+const defaultFontFamily = 'roboto, Menlo, Consolas, "Liberation Mono", Monaco, "Lucida Console", monospace';
 module.exports._defaultFontFamily = defaultFontFamily;
 
 function gritty(ref, options = {}) {
@@ -129,14 +129,7 @@ function connect(prefix, socketPath) {
     const socket = io.connect(href + prefix, {
         'max reconnection attempts' : 2 ** 32,
         'reconnection limit'        : FIVE_SECONDS,
-        path,
-        transportOptions: {
-            polling: {
-                extraHeaders: {
-                    'Cookie': document.cookie
-                }
-            }
-        }
+        path
     });
     
     return socket;
