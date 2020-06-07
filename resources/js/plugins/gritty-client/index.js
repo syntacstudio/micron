@@ -1,7 +1,4 @@
 'use strict';
-
-require('xterm/css/xterm.css');
-
 const {FitAddon} = require('xterm-addon-fit');
 const {WebglAddon} = require('xterm-addon-webgl');
 const currify = require('currify');
@@ -30,7 +27,7 @@ module.exports._onTermResize = _onTermResize;
 module.exports._onTermData = _onTermData;
 module.exports._onWindowResize = _onWindowResize;
 
-const defaultFontFamily = 'roboto, Menlo, Consolas, "Liberation Mono", Monaco, "Lucida Console", monospace';
+const defaultFontFamily = 'Menlo, Consolas, "Liberation Mono", Monaco, "Lucida Console", monospace';
 module.exports._defaultFontFamily = defaultFontFamily;
 
 function gritty(ref, options = {}) {

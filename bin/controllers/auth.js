@@ -53,7 +53,7 @@ const guest = (req, res, next) => {
     try {
         const cookieData = req.cookies._micron ? JSON.parse(req.cookies._micron) : {}
         const withAuth = config.auth.filter(itm => (itm.credential == cookieData.credential && itm.password == cookieData.password))[0]
-        if(!withAuth) {
+        if(withAuth) {
             return res.redirect('/console')
         }
     } catch(e) {}

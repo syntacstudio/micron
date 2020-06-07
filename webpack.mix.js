@@ -18,14 +18,16 @@ mix.react('resources/js/app.js', 'public/js')
 mix.options({   
   processCssUrls: false,
   // purifyCss: true,
-  whitelistPatterns: [/ic-/, /icomoon/],
 })
-.purgeCss({
-  extend: {
-    content: [
-      path.join(__dirname, 'resources/views/*.edge'),
-      path.join(__dirname, 'resources/js/*.js'),
-      path.join(__dirname, 'resources/js/*.jsx')
-    ],
-  }
-})
+// .purgeCss({
+//   enable: false,
+//   extend: {
+//     content: [
+//       path.join(__dirname, 'resources/views/*.edge'),
+//       path.join(__dirname, 'resources/js/*.js'),
+//       path.join(__dirname, 'resources/js/*.jsx'),
+//       path.join(__dirname, 'node_modules/xterm/*.ts')
+//     ],
+//     whitelistPatterns: [/-active$/, /-enter$/, /-leave-to$/, /show$/, /ic-$/, /xterm-$/],
+//   }
+// })
