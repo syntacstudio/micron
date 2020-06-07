@@ -18,6 +18,7 @@ mix.react('resources/js/app.js', 'public/js')
 mix.options({   
   processCssUrls: false,
   // purifyCss: true,
+  whitelistPatterns: [/ic-/, /icomoon/],
 })
 .purgeCss({
   extend: {
