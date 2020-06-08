@@ -24,14 +24,34 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.ic-create {
+.ic-process {
   &:before {
-    content: $ic-create; 
+    content: $ic-process; 
+  }
+}
+.ic-deploy {
+  &:before {
+    content: $ic-deploy; 
+  }
+}
+.ic-ram {
+  &:before {
+    content: $ic-ram; 
+  }
+}
+.ic-disk {
+  &:before {
+    content: $ic-disk; 
   }
 }
 .ic-plus {
   &:before {
     content: $ic-plus; 
+  }
+}
+.ic-create {
+  &:before {
+    content: $ic-create; 
   }
 }
 .ic-copy {
@@ -92,16 +112,5 @@
 .ic-user {
   &:before {
     content: $ic-user; 
-  }
-}
-
-.ic-ram {
-  &:before {
-    content: $ic-ram; 
-  }
-}
-.ic-disk {
-  &:before {
-    content: $ic-disk; 
   }
 }

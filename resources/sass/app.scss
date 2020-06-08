@@ -101,8 +101,14 @@ body {
     float:left;
     max-height: 100vh;
     overflow-y: auto;
-    padding-bottom: 50px;
+    // padding-bottom: 50px;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    .footer {
+        padding-top: 10px;;
+        margin-top: auto;
+    }
 }
 
 // dashboard main
@@ -191,60 +197,83 @@ body {
 }
 .dash-layout-tree {
     min-width: 1000px;
-    .dir-tree , .dir-tree-detail {
-        clear: both;
-        overflow: hidden;
-        background-color: #fff;
-        padding: 10px 0px;
-        >div {
-            padding: 0px 15px;
-            display: block;
-            min-height: 20px;
-            span {
-                font-weight: 500;
-            }
-            &:not(:last-child) {
-                border-right: 1px inset rgba(0,0,0,.1);
-            }
-        }
-    }
-    .dir-tree-detail {
-        clear: both;
-        margin-bottom: 10px !important;
-        >div {
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        span {
-            font-weight: 400 !important;
-        }
-    }
-    .dir-id {
-        width: 8%;
-    }
-    .dir-name {
-        width: 15%;
-    }
-    .dir-branch {
-        width: 10%;
-    }
-    .process-type {
-        width: 12%;
-    }
-    .process-list {
-        width: 12%;
-    }
-    .dir-created {
-        width: 12%;
-    }
-    .dir-action {
-        width: 12%;
-    }
     
-}
-#main-console {
-    height: calc(100% - 90px);
-    .xterm-screen {
-        height: calc(100% - 90px) !important;
+    .card-repo {
+        position: relative;
+        height: 175px;
+        // background-color: #FFF8F2;//rgba($color: #FF9234, $alpha: .1);
+        border-radius: 4px !important;
+        overflow: hidden;
+        .back-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 900px;
+            width: 900px;
+            width: 100%;
+            // z-index: -1;
+            opacity: .1;
+            object-fit: cover;
+        }
+        .main-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height:100%;
+            width: 100%;
+            color: #5C5C5C !important;
+            h3 {
+                color: var(--dark) !important;
+            }
+            h4 {
+                font-weight: normal !important;
+            }
+        }
+        .list-process {
+            margin-top: 20px;
+            clear: both;
+            .list-icon {
+                float: left;
+                width: 50px;
+                i {
+                    &.ic-process {
+                        font-size: 26px;
+                    }
+                    &.ic-deploy {
+                        font-size: 22px;
+                    }
+                }
+            }
+            .list-data {
+                font-size: 18px;
+                float: left;
+                width: calc(100% - 50px);
+            }
+        }
+    }
+    .card-repo, .add-new-repo {
+        position: relative;
+        transition: .2s ease;
+        top: 0;
+        &:hover {
+            top: -5px;
+            box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.1);
+        }
+    }
+    .add-new-repo {
+        height: 175px;
+        width: 175px;
+        border-radius: 4px;
+        overflow: hidden;
+        cursor: pointer;
+        background-color: var(--primary) ;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+            font-size: 100px;
+            color: #fff;
+            font-weight: 200 !important;
+        }
     }
 }

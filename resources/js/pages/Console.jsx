@@ -18,12 +18,12 @@ function ConsolePage(props) {
 
     return(
         <Layout>
-            <div className="dash-header-mini">
+            <div className="dash-header-mini w-100">
                 <div className="container-fluid pt-4">
                     <h1 className="text-white font-weight-light mb-0">Web Console</h1>
                 </div>
             </div>
-            <div id="main-console" ref={consoleRef}></div>
+            <div id="main-console w-100" className="p-3" ref={consoleRef}></div>
         </Layout>
     )
 }

@@ -5,6 +5,8 @@
  * Smart deployer with express
  * Author Tofik Hidayat <tofik@syntac.co.id>
  */
+const NodeCache = require('node-cache')
+global.cacheStore = new NodeCache()
 const http = require('http')
 const path = require('path')
 const express = require('express')
@@ -12,7 +14,6 @@ const logger = require('morgan')
 const chalk = require('chalk')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
-const router = require('./routers')
 const csrf = require('csurf')
 const compression = require('compression')
 const edge = require('express-edge')
@@ -22,6 +23,10 @@ const gritty = require('gritty')
 const io = require('socket.io')
 const env = require('dotenv').config()
 edge.config({ cache: process.env.NODE_ENV === 'production' })
+const router = require('./routers')
+const socketRouter = require('./socketRouter')
+require('./services/processLoger')
+// initial cache
 // internal middleware
 const authMiddleware = require('./middlewares/auth')
 
@@ -64,6 +69,7 @@ gritty.listen(socket, {
     command: 'mc',     
     autoRestart: true, 
 })
+socket.on('connection', socketRouter)
 
 // Listen server
 server.listen(parseInt(process.env.PORT), process.env.HOST, () => {
@@ -72,4 +78,14 @@ server.listen(parseInt(process.env.PORT), process.env.HOST, () => {
 // log on server error
 server.on('error', error => {
     console.error(error)
+})
+
+
+// setInterval(() => {
+//     console.log(cacheStore.get('cpu'))
+// }, 2000)
+
+global.cacheStore.on('set', (key, val) => {
+    // console.log(val)
+    // console.log(global.cacheStore.get('cpu'))
 })

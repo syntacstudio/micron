@@ -69,6 +69,19 @@ function MainPage({children, crumb=[]}) {
             </div>
             <div className='main-layout'>
                 {children}
+                <div className="footer w-100">
+                    <div className="container-fluid py-2 bg-primary">
+                        <p className="text-center text-white mb-0">Made with Love by&nbsp;
+                            <a className="text-white font-weight-bold" target="_blank" href="https://github.com/tofikhidayat">
+                                Tofik Hidayat&nbsp;
+                            </a>
+                            Powered By&nbsp;
+                            <a className="text-white font-weight-bold" target="_blank" href="https://github.com/syntacstudio">
+                                Syntac Studio
+                            </a>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
        </>

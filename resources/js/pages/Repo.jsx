@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import Layout from './Layouts/Main'
 import {Link} from 'react-router-dom'
 import moment from 'moment'
+import Tooltip from 'react-tooltip'
 import axios from 'axios'
 
 
@@ -77,103 +78,49 @@ function RePoPage(props) {
 
     return(
         <Layout>
-           <div className="dash-header-mini">
+           <div className="dash-header-mini w-100">
                <div className="container-fluid pt-4">
                     <h1 className="text-white font-weight-light mb-0">Auto Deploy App</h1>
                </div>
            </div>
            <div className="dash-layout-tree pt-3">
-               <div className="w-100 clearfix">
-                   <div className="container-fluid">
-                        <button className="float-right text-white rounded btn btn-primary">
-                            New Process <i className="ic-plus"></i>
-                        </button>
-                   </div>
-               </div>
-               <div className="container-fluid mt-3">
-                    <div className="dir-tree rounded clearfix">
-                        <div className="dir-id float-left">
-                            <span>Id</span>
-                        </div>
-                        <div className="dir-name float-left">
-                            <span>Repository</span>
-                        </div>
-                        <div className="dir-branch float-left">
-                            <span>Branch</span>
-                        </div>
-                        <div className="process-type float-left">
-                            <span>Process Type</span>
-                        </div>
-                        <div className="process-list float-left">
-                            <span>Process Timeout</span>
-                        </div>
-                        <div className="process-list float-left">
-                            <span>Process List</span>
-                        </div>
-                        <div className="dir-created float-left">
-                            <span>Created At</span>
-                        </div>
-                        <div className="dir-action float-left">
-                            <span>Action</span>
-                        </div>
-                    </div>
-               </div>
-               <div className="container-fluid mt-3">
-                    {
-                        data.map((itm, key) => {
-                            return(
-                                <div className="dir-tree-detail rounded clearfix" key={key}>
-                                    <div className="dir-id float-left">
-                                        <span>{ itm.id }</span>
-                                    </div>
-                                    <div className="dir-name float-left">
-                                        <span>{ itm.repo }</span>
-                                    </div>
-                                    <div className="dir-branch float-left">
-                                        <ul>
-                                            {itm.branch.map((br, brkey) => {
-                                                return(
-                                                    <li key={brkey}>
-                                                        {br}
-                                                    </li>
-                                                )
-                                            })}
-                                        </ul>
-                                    </div>
-                                    <div className="process-type float-left">
-                                        <span>{ itm.syncronus ? 'Syncronus': 'asyncronus' }</span>
-                                    </div>
-                                    <div className="process-list float-left">
-                                        <span>{ itm.timeout }</span>
-                                    </div>
-                                    <div className="process-list float-left">
-                                        <ul>
-                                            {itm.process.map((pr, prkey) => {
-                                                return(
-                                                    <li key={prkey}>
-                                                        <div className="cmd">
-                                                            <span>cmd</span>
-                                                            <span>{ pr.cmd }</span>
-                                                        </div>
-                                                        <div className="cwd">
-                                                            <span>cwd</span>
-                                                            <span>{ pr.cwd }</span>
-                                                        </div>
-                                                    </li>
-                                                )
-                                            })}
-                                        </ul>
-                                    </div>
-                                    <div className="dir-created float-left">
-                                        <span>{ itm.createdAt }</span>
-                                    </div>
-                                    <div className="dir-action float-left">
-                                        <span>Action</span>
-                                    </div>
+               <div className="row mx-0 px-1">
+                   { data.map((itm, key) => {
+                       return(
+                        <div className="col-lg-3 col-md-4 col-6" key={key}>
+                            <Link to="/console/deploy/repo1">
+                                <div className="card border-0 card-repo shadow">
+                                        <img src="/images/pattern.png" alt="" className="back-image"/>
+                                        <div className="main-card py-3 px-4">
+                                            <h3 className="mb-1">Micron test [Develop]</h3>
+                                            <h4 className="mb-0">tofik hidayat / micron</h4>
+                                            <div className="w-100 list-process clearfix">
+                                                <div className="list-icon">
+                                                    <i className="ic ic-process"></i>
+                                                </div>
+                                                <div className="list-data">
+                                                    <span>12</span>
+                                                </div>
+                                            </div>
+                                            <div className="w-100 list-process text-danger mt-2 clearfix">
+                                                <div className="list-icon">
+                                                    <i className="ic ic-deploy"></i>
+                                                </div>
+                                                <div className="list-data">
+                                                    <span>Failed Deploy</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                 </div>
-                            )
-                        })
-                    }
+                            </Link>
+                        </div>
+                       )
+                   })}
+                   <div className="col-lg-3 col-md-4 col-6">
+                        <div className="add-new-repo">
+                                <span className="ic ic-plus"></span>
+                        </div>
+                   </div>
                </div>
            </div>
         </Layout>

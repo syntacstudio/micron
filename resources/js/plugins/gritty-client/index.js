@@ -65,6 +65,10 @@ function createTerminal(terminalContainer, {env, cwd, command, autoRestart, sock
         fontFamily,
         theme: {
             background: '#888888',
+            fontColor: '#cyan',
+            color: 'red',
+            brightGreen: '#fff000',
+            green: '#7c3212'
           }
     });
     
@@ -103,6 +107,7 @@ function _onDisconnect(terminal) {
 }
 
 function _onData(terminal, data) {
+    console.log(data)
     terminal.write(data);
 }
 

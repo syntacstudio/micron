@@ -3,11 +3,15 @@ import Layout from './Layouts/Main'
 import {Link} from 'react-router-dom'
 import moment from 'moment'
 import axios from 'axios'
-import { Line as Area } from 'react-chartjs-2';
+import { Line as Area } from 'react-chartjs-2'
+import io from 'socket.io-client'
 
 const chatDefaultOption = {
     maintainAspectRatio: false,
-	spanGaps: false,
+    spanGaps: false,
+    animation: {
+        duration: 100
+    },
 	elements: {
 	    line: {
 		    tension: 0.000001
@@ -22,7 +26,7 @@ const chatDefaultOption = {
 	    xAxes: [{
 		    ticks: {
 			    autoSkip: true,
-				maxRotation: 0
+				// maxRotation: 0
             },
             gridLines: {
                 // display: false,
@@ -31,7 +35,10 @@ const chatDefaultOption = {
         yAxes: [{
 		    ticks: {
 			    autoSkip: true,
-				maxRotation: 0
+                maxRotation: 0,
+                max: 100,
+                min: 0,
+                stepSize: 10
             },
             gridLines: {
                 // display: false,
@@ -47,37 +54,41 @@ const chatDefaultOption = {
 function MainPage(props) {
 
     const [cpuData, setCpuData] = useReducer((oldState, newState) => ({ ...oldState, ...newState}), {
-        labels: ['12:00', '12:01', '12:02', '12:03', '12:05', '12:06', '12:07', '12:08', '12:09', '12:10', '12:11', '12:23'],
+        labels: ['12:00'],
         datasets: [{
             label: "Cpu Ussage",
             backgroundColor: 'rgba(255, 146, 52, .4)',
             borderColor: '#ff9234',
-            smooth: true,
+            // smooth: true,
             lineTension: 0.2,  
-            data: [100, 60, 75, 20, 20, 55, 40, 45, 56, 100, 10, 0],
+            data: [0],
         }]
     })
     useEffect(() => {
-        const randCreate = () => Math.floor(Math.random() * 101)
-        setInterval(() => {
-            setCpuData({
-                labels: ['12:00', '12:01', '12:02', '12:03', '12:05', '12:06', '12:07', '12:08', '12:09', '12:10', '12:11', '12:23'],
-                datasets: [{
-                    label: "Cpu Ussage",
-                    backgroundColor: 'rgba(255, 146, 52, .4)',
-                    borderColor: '#ff9234',
-                    smooth: true,
-                    lineTension: 0.2,  
-                    data: [randCreate(), randCreate(), randCreate(), randCreate(),randCreate(),randCreate(),randCreate(),randCreate(),randCreate(),randCreate(),randCreate(),randCreate(),randCreate()]
-                }]
+        const socket  = io(window.location.origin) 
+        socket.on('connect', () => {
+            socket.on('update-cpu', data => {
+                setCpuData({
+                    labels: data.time,
+                    datasets: [
+                        {
+                            label: "Cpu Ussage",
+                            backgroundColor: 'rgba(255, 146, 52, .4)',
+                            borderColor: '#ff9234',
+                            // smooth: true,
+                            lineTension: 0.2,  
+                            data: data.data ,
+                        }
+                    ]
+                })
             })
-        }, 2000)
+        })
     }, [])
 
    
     return(
         <Layout>
-           <div className="dash-header">
+           <div className="dash-header w-100 d-block">
                <div className="w-100">
                   <div className="container-fluid pt-4">
                     <h1 className="text-white font-weight-light mb-0">Micron Deployer</h1>
@@ -112,7 +123,7 @@ function MainPage(props) {
                                         </h2>
                                     </div>
                                     <div className="flying-icon">
-                                        <span className="ic-ram" style={{ fontSize: '35px' }}></span>
+                                        <span className="ic ic-ram" style={{ fontSize: '35px' }}></span>
                                     </div>
                                 </div>
                                 <div className="card-footer bg-white border-0">
@@ -134,7 +145,7 @@ function MainPage(props) {
                                         </h2>
                                    </div>
                                     <div className="flying-icon">
-                                        <span className="ic-disk" style={{ fontSize: '25px' }}></span>
+                                        <span className="ic ic-disk" style={{ fontSize: '25px' }}></span>
                                     </div>
                                 </div>
                                 <div className="card-footer bg-white border-0">
@@ -147,7 +158,7 @@ function MainPage(props) {
                    </div>
                </div>
            </div>
-           <div className="dash-main container-fluid">
+           <div className="dash-main container-fluid w-100">
            </div>
         </Layout>
     )
