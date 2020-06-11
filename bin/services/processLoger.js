@@ -2,13 +2,13 @@
 
 const cpuStat = require('cpu-stat')
 const moment = require('moment')
-const MAX_DATA_LENGTH = 30
+const config = require('../../config')
 
 
 const fillData = (based, data) => {
    const length = based.length
-   if(length >= MAX_DATA_LENGTH) {
-    based = based.slice(length - MAX_DATA_LENGTH, length)
+   if(length >= config['chart-length']) {
+    based = based.slice(length - config['chart-length'], length)
    }
    based.push(data)
    return based
@@ -28,4 +28,4 @@ setInterval(() => {
             global.cacheStore.set('cpu-data', newCache)
         }
     });
-}, 1000)
+}, config['update-timeout'])

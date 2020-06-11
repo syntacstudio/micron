@@ -1,6 +1,13 @@
 import React from 'react'
 import {NavLink, Link} from 'react-router-dom'
 import Tooltip from 'react-tooltip'
+import Cookies from 'js-cookie'
+
+
+const forget = () => {
+    Cookies.remove('_micron')
+    window.location.href = '/console/login'
+}
 
 function MainPage({children, crumb=[]}) {
     
@@ -58,7 +65,7 @@ function MainPage({children, crumb=[]}) {
                             </Tooltip>
                         </li>
                         <li className="logout">
-                            <a href="#" data-tip data-for="logout" className="ic ic-logout">
+                            <a href="#" data-tip data-for="logout" className="ic ic-logout" onClick={forget}>
                             </a>
                             <Tooltip id="logout" type="dark" backgroundColor="var(--primary)" effect="solid" place="right">
                                 <span>Logout</span>

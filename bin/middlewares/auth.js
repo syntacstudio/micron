@@ -12,7 +12,7 @@ const cookie = require('cookie')
  */
 const webAuth = (req, res, next) => {
     
-    if(process.env.AUTH == 'false') next()
+    if(process.env.AUTH == 'false') return next()
     try {
         const cookieData = req.cookies._micron ? JSON.parse(req.cookies._micron) : {}
         const withAuth = config.auth.filter(itm => (itm.credential === cookieData.credential && itm.password === cookieData.password))[0]
@@ -31,6 +31,7 @@ const webAuth = (req, res, next) => {
  */
 
 const wsAuth = (socket, next) => {
+    if(process.env.AUTH == 'false') return next()
     const cookies = cookie.parse(socket.handshake.headers.cookie)
     const micron = cookies._micron ? cookies._micron.replace('e:', '') : null
     if(micron) {

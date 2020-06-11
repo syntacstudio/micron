@@ -39,6 +39,7 @@
     "github-webhook-middleware": "^0.0.2",
     "gritty": "^4.8.12",
     "helmet": "^3.22.0",
+    "js-cookie": "^2.2.1",
     "log-to-file": "^2.0.2",
     "mkdirp": "^1.0.4",
     "moment": "^2.26.0",
@@ -46,13 +47,15 @@
     "node-cache": "^5.1.1",
     "os-utils": "^0.0.14",
     "socket.io": "^2.3.0",
-    "systeminformation": "^4.26.9"
+    "systeminformation": "^4.26.9",
+    "xterm-addon-search": "^0.7.0"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.10.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "chart.js": "^2.9.3",
+    "chartjs-plugin-streaming": "^1.8.0",
     "currify": "^4.0.0",
     "laravel-mix": "^5.0.4",
     "laravel-mix-purgecss": "^5.0.0",

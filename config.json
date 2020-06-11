@@ -1,4 +1,34 @@
 {
+  "chart-length": 10,
+  "update-timeout": 3000,
+  "terminal": {
+    "background": "#888888",
+    "foreground": "cyan",
+    "cursor": "red",
+    "cursorAccent": "cyan",
+    "colors": {
+      "color": "red",
+      "brightGreen": "#fff000",
+      "green": "#7c3212",
+      "black": "black",
+      "blue": "blue",
+      "brightBlack": "brightBlack",
+      "brightBlue": "brightBlue",
+      "brightCyan": "brightCyan",
+      "brightGreen": "brightGreen",
+      "brightMagenta": "brightMagenta",
+      "brightRed": "brightRed",
+      "brightWhite": "brightWhite",
+      "brightYellow": "brightYellow",
+      "cyan": "cyan",
+      "green": "green",
+      "magenta": "magenta",
+      "red": "red",
+      "selection": "selection",
+      "white": "white",
+      "yellow": "yellow"
+    }
+  },
   "auth": [
       {
         "credential": "micron",

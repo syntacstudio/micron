@@ -31,41 +31,49 @@ function LoginPage() {
         password: ''
     })
     return (
-        <div className="container-login">
-            <div className="card-auth">
-                
+        <div className="login-container">
+            <div className="login-space">
+                <img src="/images/login_illustration.svg" alt="" className="login-illustration"/>
+            </div>
+            <div className="login-main justify-content-ceter flex-column p-5">
+                <div className="mr-auto">
+                    <a target="_blank" href="https://github.com/syntacstudio/micron">
+                        <img src="/images/logo.svg" height="70px" width="70px" className="logo-micron" alt=""/>
+                    </a>
+                </div>  
+                <div className="login-header mt-3 mr-auto">
+                    <h1 className="text-left text-dark font-weight-bold">
+                        Hello Again Bro :)
+                    </h1>
+                    <p className="text-left font-weight-normal text-secondary mt-2">
+                        Thank you for using micron,<br/>
+                        To keep your micron console safe, you must log in again,
+                    </p>
+                </div>
                 {
                     alert &&
-                    <div className="alert alert-danger shadow">
+                    <div className="alert alert-danger shadow w-100 d-flex">
                         { alert }
-                        <button type="button" className="close" onClick={e => setAlert(false)}>
-                            <span aria-hidden="true">&times;</span>
+                        <button type="button" className="btn brn-transparent p-0 close ml-auto" onClick={e => setAlert(false)}>
+                            <span aria-hidden="true" style={{ fontSize: '15px' }}>&times;</span>
                         </button>
                     </div>
                 }
-            
-                <div className=" card mx-auto shadow">
-                    <div className="card-header">
-                        <h5 className="mb-0 font-weight-bold text-white">Login To Console</h5>
+                <form className="login-form w-100 d-block" onSubmit={e => handleLogin(e, forms, setAlert)}>
+                    <div className="form-group">
+                        <label htmlFor="credential" className="col-form-label pb-0">Credential</label>
+                        <input type="text"  id="credential" className="form-control form-control-lg shadow-none pt-0 px-0 pb-0" autoComplete="off" value={forms.credential} onChange={e => setForms({credential: e.target.value })}/>
                     </div>
-                    <div className="card-body">
-                        <form onSubmit={e => handleLogin(e, forms, setAlert)}>
-                            <div className="form-group">
-                                <label htmlFor="credential" className="col-form-label text-secondary ">Credential</label>
-                                    <input type="text" required className="form-control form-control-lg" id="credential" name="credential" autoComplete="off" value={forms.credential} onChange={e => setForms({credential: e.target.value })}/>
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="password" className="col-form-label text-secondary">Password</label>
-                                    <input type="password" required className="form-control form-control-lg" id="password" name="password" autoComplete="off" value={forms.password} onChange={e => setForms({password: e.target.value })}/>
-                                </div>
-                                <div className="w-100 clearfix pt-2">
-                                <div className="float-right">
-                                    <button className="btn btn-primary px-4">Login</button>
-                                </div>
-                            </div>
-                        </form>
+                    <div className="form-group ">
+                        <label htmlFor="password" className="col-form-label mb-0 pb-0">Password</label>
+                        <input type="password"  id="password" className="form-control form-control-lg shadow-none pt-0 px-0 pb-0" autoComplete="off" value={forms.password} onChange={e => setForms({password: e.target.value })}/>
                     </div>
-                </div>
+                    <div className="w-100 pt-4">
+                        <button className="btn btn-primary shadow-none btn-block btn-lg text-white">
+                            LOGIN
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     )

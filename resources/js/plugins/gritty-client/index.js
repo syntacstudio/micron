@@ -1,6 +1,7 @@
 'use strict';
 const {FitAddon} = require('xterm-addon-fit');
 const {WebglAddon} = require('xterm-addon-webgl');
+const { SearchAddon } = require('xterm-addon-search');
 const currify = require('currify');
 
 const getEl = require('./get-el');
@@ -59,6 +60,7 @@ function gritty(ref, options = {}) {
 function createTerminal(terminalContainer, {env, cwd, command, autoRestart, socket, fontFamily}) {
     const fitAddon = new FitAddon();
     const webglAddon = new WebglAddon();
+    const searchAddon = new SearchAddon();
     const terminal = new Terminal({
         scrollback: 1000,
         tabStopWidth: 4,
@@ -77,6 +79,7 @@ function createTerminal(terminalContainer, {env, cwd, command, autoRestart, sock
     
     terminal.loadAddon(webglAddon);
     terminal.loadAddon(fitAddon);
+    terminal.loadAddon(searchAddon);
     fitAddon.fit();
     
     terminal.onResize(onTermResize(socket));

@@ -4,13 +4,14 @@ import {Link} from 'react-router-dom'
 import moment from 'moment'
 import axios from 'axios'
 import { Line as Area } from 'react-chartjs-2'
+import 'chartjs-plugin-streaming'
 import io from 'socket.io-client'
 
 const chatDefaultOption = {
     maintainAspectRatio: false,
     spanGaps: false,
     animation: {
-        duration: 100
+        duration: 50
     },
 	elements: {
 	    line: {
@@ -25,15 +26,33 @@ const chatDefaultOption = {
 	scales: {
 	    xAxes: [{
 		    ticks: {
-			    autoSkip: true,
+                autoSkip: true,
+                fontSize: 10
 				// maxRotation: 0
             },
             gridLines: {
                 // display: false,
             },
+            // type: 'realtime',
+            // realtime: {
+            //     delay: 200,
+            //     refresh: 0,
+            //     frameRate: 60,
+            //     duration: 36000,
+            //     onRefresh: function(chart) {
+            //         chart.data.datasets.forEach(function(dataset) {
+            //             // console.log(dataset.data)
+            //             dataset.data.push({
+            //               x:  Date.now(),
+            //               y: 100
+            //             })
+            //           })
+            //       }
+            //   }
         }],
         yAxes: [{
 		    ticks: {
+                fontSize: 10,
 			    autoSkip: true,
                 maxRotation: 0,
                 max: 100,
@@ -42,7 +61,7 @@ const chatDefaultOption = {
             },
             gridLines: {
                 // display: false,
-            },
+            }
 		}]
     },
     legend: {
@@ -53,33 +72,14 @@ const chatDefaultOption = {
 
 function MainPage(props) {
 
-    const [cpuData, setCpuData] = useReducer((oldState, newState) => ({ ...oldState, ...newState}), {
-        labels: ['12:00'],
-        datasets: [{
-            label: "Cpu Ussage",
-            backgroundColor: 'rgba(255, 146, 52, .4)',
-            borderColor: '#ff9234',
-            // smooth: true,
-            lineTension: 0.2,  
-            data: [0],
-        }]
-    })
+    const [cpuData, setCpuData] = useReducer((oldState, newState) => ({ ...oldState, ...newState}), {})
     useEffect(() => {
         const socket  = io(window.location.origin) 
         socket.on('connect', () => {
             socket.on('update-cpu', data => {
                 setCpuData({
                     labels: data.time,
-                    datasets: [
-                        {
-                            label: "Cpu Ussage",
-                            backgroundColor: 'rgba(255, 146, 52, .4)',
-                            borderColor: '#ff9234',
-                            // smooth: true,
-                            lineTension: 0.2,  
-                            data: data.data ,
-                        }
-                    ]
+                    data: data.data
                 })
             })
         })
@@ -104,7 +104,17 @@ function MainPage(props) {
                             <div className="card-body p-2 pt-0">
                                 <Area
                                 height={250}
-                                data={cpuData}
+                                data={{ 
+                                    labels: cpuData.labels,
+                                    datasets: [{
+                                        // label: "Cpu Ussage",
+                                        backgroundColor: 'rgba(255, 146, 52, .4)',
+                                        borderColor: '#ff9234',
+                                        // smooth: true,
+                                        // lineTension: 0.2,  
+                                        data: cpuData.data,
+                                    }]
+                                 }}
                                 options={chatDefaultOption}
                                 />
                             </div>
