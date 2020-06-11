@@ -12,6 +12,14 @@ object-assign
  */
 
 /*!
+ * JavaScript Cookie v2.2.1
+ * https://github.com/js-cookie/js-cookie
+ *
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+ * Released under the MIT license
+ */
+
+/*!
  * Socket.IO v2.3.0
  * (c) 2014-2019 Guillermo Rauch
  * Released under the MIT License.
@@ -22,6 +30,13 @@ object-assign
  *
  * @author   Feross Aboukhadijeh <http://feross.org>
  * @license  MIT
+ */
+
+/*!
+ * chartjs-plugin-streaming v1.8.0
+ * https://nagix.github.io/chartjs-plugin-streaming
+ * (c) 2019 Akihiko Kusanagi
+ * Released under the MIT license
  */
 
 /*! https://mths.be/utf8js v2.1.2 by @mathias */
